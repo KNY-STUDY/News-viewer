@@ -36,9 +36,11 @@ const categories = [
 const CategoriesBlock = styled.div`
     display: flex;
     padding: 1rem;
-    width: 768px;
+    width: auto;
     margin: 0 auto;
-    @media screen and (max-width: 768px) {
+    justify-content: center;
+    background-color: #6d96ff;
+    @media screen and (max-width: 500px) {
         width: 100%;
         overflow-x: auto;
     }
@@ -49,11 +51,12 @@ const Category = styled(NavLink)`
     cursor: pointer;
     white-space: pre;
     text-decoration: none;
-    color: inherit;
+    color: #fff;
     padding-bottom: 0.25rem;
-
+    text-align: center;
     &:hover {
-        color: #495057;
+      color: #222;
+      font-weight: bold;
     }
 
     ${props => props.active && css`
@@ -61,7 +64,7 @@ const Category = styled(NavLink)`
         border-bottom: 2px solid #22b8cf;
         color: #22b8cf;
         &:hover {
-        color: #3bc9db;
+        color: #222;
         }
     `}
 
@@ -76,7 +79,8 @@ const Categories = () => {
             {categories.map((c) => (
                 <Category
                     key={c.name}
-                    className={({ isActive }) => (isActive ? 'active' : undefined)}
+                    //NavLink : v6에서 activeStyle, activeClassName 속성 삭제 isActive 선언 
+                    className={({ isActive }) => (isActive ? 'active' : undefined)} 
                     //exact={c.name === 'all'}
                     to={c.name === 'all' ? '/' : `/${c.name}`}
                     end
